@@ -1,6 +1,6 @@
 # 🔐 Credd
 
-> CLI tool for managing GitHub & GitLab secrets and credentials
+> CLI tool for managing GitHub & GitLab & Local secrets and credentials
 
 [![LSK.js](https://github.com/lskjs/presets/raw/main/docs/badge.svg)](https://github.com/lskjs)
 [![NPM version](https://badgen.net/npm/v/credd)](https://www.npmjs.com/package/credd)
