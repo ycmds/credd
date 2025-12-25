@@ -1,6 +1,6 @@
 {
   "name": "credd",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "type": "module",
   "description": "CLI tool for managing GitHub & GitLab & Local secrets and credentials",
   "author": "Igor Suvorov <hi@isuvorov.com> (https://github.com/isuvorov)",
