@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/ycmds/credd/compare/v1.0.0...v1.0.1) (2025-12-25)
+
+
+### Bug Fixes
+
+* update release workflow to include npm registry URL and enable provenance in package.json ([e5fb5c1](https://github.com/ycmds/credd/commit/e5fb5c19e84210d14f169ad03f1b7e13162906da))
+
 # 1.0.0 (2025-12-25)
 
 
