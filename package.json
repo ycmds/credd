@@ -63,7 +63,7 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "bin": {
-    "credd": "./lib/bin/credd.js"
+    "credd": "./lib/bin/credd.mjs"
   },
   "exports": {
     ".": {
