@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/ycmds/credd/compare/v1.0.2...v1.0.3) (2025-12-26)
+
+
+### Bug Fixes
+
+* update bin entry to use .mjs extension for credd ([f9677bb](https://github.com/ycmds/credd/commit/f9677bbf5ce1b42fac824bd202289b598e7a4231))
+
 ## [1.0.2](https://github.com/ycmds/credd/compare/v1.0.1...v1.0.2) (2025-12-26)
 
 
