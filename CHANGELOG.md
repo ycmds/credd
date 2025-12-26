@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/ycmds/credd/compare/v1.0.1...v1.0.2) (2025-12-26)
+
+
+### Bug Fixes
+
+* update logo size in README and format feature list for better readability ([f2a67b6](https://github.com/ycmds/credd/commit/f2a67b6ef753ff3a9e904bf4f1a262b1d2919700))
+
 ## [1.0.1](https://github.com/ycmds/credd/compare/v1.0.0...v1.0.1) (2025-12-25)
 
 
