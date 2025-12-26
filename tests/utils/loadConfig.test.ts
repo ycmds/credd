@@ -93,7 +93,7 @@ describe('loadConfig', () => {
 
     const result = await loadConfig(testDir);
 
-    assert(Array.isArray(result.config.files));
+    assert.ok(Array.isArray(result.config.files));
     assert.strictEqual(result.config.files.length, 1);
     assert.strictEqual(result.config.files[0].name, 'test-file');
   });

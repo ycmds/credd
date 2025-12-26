@@ -80,8 +80,8 @@ describe('buildDeep', () => {
     const file1Exists = await stat(join(build1Dir, 'file1.json')).then(() => true).catch(() => false);
     const file2Exists = await stat(join(build2Dir, 'file2.json')).then(() => true).catch(() => false);
 
-    assert(file1Exists, 'Project 1 should be built');
-    assert(file2Exists, 'Project 2 should be built');
+    assert.ok(file1Exists, 'Project 1 should be built');
+    assert.ok(file2Exists, 'Project 2 should be built');
   });
 
   test('should skip directories without index.js', async () => {
@@ -121,12 +121,12 @@ describe('buildDeep', () => {
     const buildDir = join(projectWithIndex, 'build');
     const fileExists = await stat(join(buildDir, 'file.json')).then(() => true).catch(() => false);
 
-    assert(fileExists, 'Project with index.js should be built');
+    assert.ok(fileExists, 'Project with index.js should be built');
 
     // Project without index.js should not have build directory
     const buildDirWithout = join(projectWithoutIndex, 'build');
     const buildDirExists = await stat(buildDirWithout).then(() => true).catch(() => false);
-    assert(!buildDirExists, 'Project without index.js should not be built');
+    assert.ok(!buildDirExists, 'Project without index.js should not be built');
   });
 
   test('should handle errors gracefully', async () => {
@@ -174,7 +174,7 @@ describe('buildDeep', () => {
     // Project 1 should still be built
     const build1Dir = join(project1Dir, 'build');
     const file1Exists = await stat(join(build1Dir, 'file1.json')).then(() => true).catch(() => false);
-    assert(file1Exists, 'Valid project should still be built despite errors in other projects');
+    assert.ok(file1Exists, 'Valid project should still be built despite errors in other projects');
   });
 });
 

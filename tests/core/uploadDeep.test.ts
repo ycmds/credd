@@ -82,15 +82,15 @@ describe('uploadDeep', () => {
     const file1Exists = await stat(join(build1Dir, 'file1.json')).then(() => true).catch(() => false);
     const file2Exists = await stat(join(build2Dir, 'file2.json')).then(() => true).catch(() => false);
 
-    assert(file1Exists, 'File1 should be built');
-    assert(file2Exists, 'File2 should be built');
+    assert.ok(file1Exists, 'File1 should be built');
+    assert.ok(file2Exists, 'File2 should be built');
 
     // Upload (will fail without real credentials, but should process structure)
     try {
       await uploadDeep(testDir, { force: true });
     } catch (error: any) {
       // Expected to fail without real credentials
-      assert(
+      assert.ok(
         error.message.includes('token') ||
           error.message.includes('401') ||
           error.message.includes('Unauthorized') ||
@@ -142,8 +142,8 @@ describe('uploadDeep', () => {
     const buildExists = await stat(buildDir).then(() => true).catch(() => false);
     const buildWithoutExists = await stat(buildDirWithout).then(() => true).catch(() => false);
 
-    assert(buildExists, 'Project with index.js should have build directory');
-    assert(!buildWithoutExists, 'Project without index.js should not have build directory');
+    assert.ok(buildExists, 'Project with index.js should have build directory');
+    assert.ok(!buildWithoutExists, 'Project without index.js should not have build directory');
   });
 });
 

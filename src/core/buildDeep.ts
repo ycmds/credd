@@ -1,4 +1,4 @@
-import { existsSync } from 'node:fs';
+import { access } from 'node:fs/promises';
 
 import { Err } from '@lsk4/err';
 import type { ILogger } from '@lsk4/log';
@@ -19,8 +19,12 @@ export async function buildDeep(dirname: string, options: BuildDeepOptions = {})
   const files = (
     await map(rawFiles, async (rawFile: any) => {
       const { filename } = rawFile;
-      if (!(await existsSync(`${filename}/index.js`))) return null;
-      return rawFile;
+      try {
+        await access(`${filename}/index.js`);
+        return rawFile;
+      } catch {
+        return null;
+      }
     })
   ).filter(Boolean);
   return mapSeries(files, async ({ filename }) => {

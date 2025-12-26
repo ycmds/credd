@@ -20,7 +20,7 @@ describe('getFiles', () => {
 
   test('should return empty array for empty directory', async () => {
     const result = await getFiles(testDir);
-    assert(Array.isArray(result));
+    assert.ok(Array.isArray(result));
     assert.strictEqual(result.length, 0);
   });
 
@@ -32,13 +32,13 @@ describe('getFiles', () => {
 
     const result = await getFiles(testDir);
 
-    assert(Array.isArray(result));
-    assert(result.length >= 3);
+    assert.ok(Array.isArray(result));
+    assert.ok(result.length >= 3);
 
     const fileNames = result.map((file) => file.name);
-    assert(fileNames.includes('file1.txt'));
-    assert(fileNames.includes('file2.js'));
-    assert(fileNames.includes('file3.json'));
+    assert.ok(fileNames.includes('file1.txt'));
+    assert.ok(fileNames.includes('file2.js'));
+    assert.ok(fileNames.includes('file3.json'));
   });
 
   test('should not include directories in result', async () => {
@@ -48,8 +48,8 @@ describe('getFiles', () => {
     const result = await getFiles(testDir);
 
     const fileNames = result.map((file) => file.name);
-    assert(fileNames.includes('file1.txt'));
-    assert(!fileNames.includes('dir1'));
+    assert.ok(fileNames.includes('file1.txt'));
+    assert.ok(!fileNames.includes('dir1'));
   });
 
   test('should return files with correct structure', async () => {
@@ -59,9 +59,9 @@ describe('getFiles', () => {
 
     assert.strictEqual(result.length, 1);
     assert.strictEqual(result[0].name, 'test-file.txt');
-    assert(result[0].dir);
-    assert(result[0].filename);
-    assert(result[0].filename.includes('test-file.txt'));
+    assert.ok(result[0].dir);
+    assert.ok(result[0].filename);
+    assert.ok(result[0].filename.includes('test-file.txt'));
   });
 
   test('should handle nested file structure', async () => {
@@ -71,7 +71,7 @@ describe('getFiles', () => {
     const result = await getFiles(testDir);
 
     const fileNames = result.map((file) => file.name);
-    assert(fileNames.includes('nested.txt'));
+    assert.ok(fileNames.includes('nested.txt'));
   });
 });
 

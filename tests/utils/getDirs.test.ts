@@ -20,7 +20,7 @@ describe('getDirs', () => {
 
   test('should return empty array for empty directory', async () => {
     const result = await getDirs(testDir);
-    assert(Array.isArray(result));
+    assert.ok(Array.isArray(result));
     assert.strictEqual(result.length, 0);
   });
 
@@ -39,14 +39,14 @@ describe('getDirs', () => {
 
     const result = await getDirs(testDir);
 
-    assert(Array.isArray(result));
-    assert(result.length >= 3);
+    assert.ok(Array.isArray(result));
+    assert.ok(result.length >= 3);
 
     const dirNames = result.map((dir) => dir.name);
-    assert(dirNames.includes('dir1'));
-    assert(dirNames.includes('dir2'));
-    assert(dirNames.includes('dir3'));
-    assert(dirNames.includes('subdir1'));
+    assert.ok(dirNames.includes('dir1'));
+    assert.ok(dirNames.includes('dir2'));
+    assert.ok(dirNames.includes('dir3'));
+    assert.ok(dirNames.includes('subdir1'));
   });
 
   test('should not include files in result', async () => {
@@ -56,8 +56,8 @@ describe('getDirs', () => {
     const result = await getDirs(testDir);
 
     const dirNames = result.map((dir) => dir.name);
-    assert(dirNames.includes('dir1'));
-    assert(!dirNames.includes('file1.txt'));
+    assert.ok(dirNames.includes('dir1'));
+    assert.ok(!dirNames.includes('file1.txt'));
   });
 
   test('should return directories with correct structure', async () => {
@@ -67,9 +67,9 @@ describe('getDirs', () => {
 
     assert.strictEqual(result.length, 1);
     assert.strictEqual(result[0].name, 'test-dir');
-    assert(result[0].dir);
-    assert(result[0].filename);
-    assert(result[0].filename.includes('test-dir'));
+    assert.ok(result[0].dir);
+    assert.ok(result[0].filename);
+    assert.ok(result[0].filename.includes('test-dir'));
   });
 
   test('should handle nested directory structure', async () => {
@@ -78,9 +78,9 @@ describe('getDirs', () => {
     const result = await getDirs(testDir);
 
     const dirNames = result.map((dir) => dir.name);
-    assert(dirNames.includes('level1'));
-    assert(dirNames.includes('level2'));
-    assert(dirNames.includes('level3'));
+    assert.ok(dirNames.includes('level1'));
+    assert.ok(dirNames.includes('level2'));
+    assert.ok(dirNames.includes('level3'));
   });
 });
 

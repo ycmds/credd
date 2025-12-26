@@ -71,7 +71,7 @@ describe('importRequire', () => {
 
     const result = await importRequire(filePath);
 
-    assert(typeof result === 'function');
+    assert.ok(typeof result === 'function');
     assert.strictEqual(result().result, 'success');
   });
 

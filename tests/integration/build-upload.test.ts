@@ -69,12 +69,12 @@ describe('Integration: build and upload', () => {
     // Verify build output
     const configFile = join(buildDir, 'config.json');
     const configExists = await stat(configFile).then(() => true).catch(() => false);
-    assert(configExists, 'Config file should be built');
+    assert.ok(configExists, 'Config file should be built');
 
     const configContent_built = await readFile(configFile, 'utf-8');
     const configData = JSON.parse(configContent_built);
-    assert(configData.apiKey, 'Config should contain apiKey');
-    assert(configData.timestamp, 'Config should contain timestamp');
+    assert.ok(configData.apiKey, 'Config should contain apiKey');
+    assert.ok(configData.timestamp, 'Config should contain timestamp');
 
     // Upload step (this will fail without actual API credentials, but we can test the structure)
     // Note: In a real scenario, you'd mock the service or use a test API
@@ -82,7 +82,7 @@ describe('Integration: build and upload', () => {
       await upload(testDir, { buildDir });
     } catch (error: any) {
       // Expected to fail without real credentials, but should not fail on file reading
-      assert(
+      assert.ok(
         error.message.includes('token') ||
           error.message.includes('401') ||
           error.message.includes('Unauthorized') ||
@@ -135,8 +135,8 @@ describe('Integration: build and upload', () => {
     const envExists = await stat(envFile).then(() => true).catch(() => false);
     const secretsExists = await stat(secretsFile).then(() => true).catch(() => false);
 
-    assert(envExists, 'Env config file should exist');
-    assert(secretsExists, 'Secrets config file should exist');
+    assert.ok(envExists, 'Env config file should exist');
+    assert.ok(secretsExists, 'Secrets config file should exist');
   });
 });
 

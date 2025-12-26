@@ -1,5 +1,5 @@
 import * as assert from 'node:assert';
-import { describe, test, before, after } from 'node:test';
+import { describe, test, before, after, beforeEach } from 'node:test';
 import { mkdir, writeFile, rm, readFile, stat } from 'node:fs/promises';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
@@ -14,6 +14,11 @@ describe('build', () => {
     testDir = join(tmpdir(), `credd-test-${Date.now()}`);
     buildDir = join(testDir, 'build');
     await mkdir(testDir, { recursive: true });
+  });
+
+  beforeEach(async () => {
+    // Clean build directory before each test
+    await rm(buildDir, { recursive: true, force: true }).catch(() => {});
   });
 
   after(async () => {
@@ -47,12 +52,12 @@ describe('build', () => {
 
     // Check that build directory was created
     const buildDirExists = await stat(buildDir).then(() => true).catch(() => false);
-    assert(buildDirExists, 'Build directory should exist');
+    assert.ok(buildDirExists, 'Build directory should exist');
 
     // Check that file was created
     const filePath = join(buildDir, 'test-secret.json');
     const fileExists = await stat(filePath).then(() => true).catch(() => false);
-    assert(fileExists, 'Build file should exist');
+    assert.ok(fileExists, 'Build file should exist');
 
     // Check file content
     const content = await readFile(filePath, 'utf-8');
@@ -99,8 +104,8 @@ describe('build', () => {
     const file1Exists = await stat(file1Path).then(() => true).catch(() => false);
     const file2Exists = await stat(file2Path).then(() => true).catch(() => false);
 
-    assert(file1Exists, 'File1 should exist');
-    assert(file2Exists, 'File2 should exist');
+    assert.ok(file1Exists, 'File1 should exist');
+    assert.ok(file2Exists, 'File2 should exist');
 
     const content1 = await readFile(file1Path, 'utf-8');
     const content2 = await readFile(file2Path, 'utf-8');
@@ -161,7 +166,7 @@ describe('build', () => {
 
     // Build directory should still be created
     const buildDirExists = await stat(buildDir).then(() => true).catch(() => false);
-    assert(buildDirExists, 'Build directory should exist');
+    assert.ok(buildDirExists, 'Build directory should exist');
   });
 
   test('should use custom buildDir when provided', async () => {
@@ -192,7 +197,7 @@ describe('build', () => {
 
     const filePath = join(customBuildDir, 'custom.json');
     const fileExists = await stat(filePath).then(() => true).catch(() => false);
-    assert(fileExists, 'File should be in custom build directory');
+    assert.ok(fileExists, 'File should be in custom build directory');
   });
 });
 

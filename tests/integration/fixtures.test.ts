@@ -80,15 +80,15 @@ describe('Integration: Fixture-based tests', () => {
     const secretExists = await stat(secretFile).then(() => true).catch(() => false);
     const variableExists = await stat(variableFile).then(() => true).catch(() => false);
 
-    assert(secretExists, 'test_secret.js should be built');
-    assert(variableExists, 'test_variable.js should be built');
+    assert.ok(secretExists, 'test_secret.js should be built');
+    assert.ok(variableExists, 'test_variable.js should be built');
 
     // Check content
     const secretContent = await readFile(secretFile, 'utf-8');
     const variableContent = await readFile(variableFile, 'utf-8');
 
-    assert(secretContent.includes('AWS_S3_TOKEN'), 'Secret file should contain AWS_S3_TOKEN');
-    assert(
+    assert.ok(secretContent.includes('AWS_S3_TOKEN'), 'Secret file should contain AWS_S3_TOKEN');
+    assert.ok(
       variableContent.includes('DOCKER_REGISTRY'),
       'Variable file should contain DOCKER_REGISTRY',
     );
@@ -159,8 +159,8 @@ describe('Integration: Fixture-based tests', () => {
     const file1Exists = await stat(join(build1Dir, 'file1.json')).then(() => true).catch(() => false);
     const file2Exists = await stat(join(build2Dir, 'file2.json')).then(() => true).catch(() => false);
 
-    assert(file1Exists, 'Project 1 should be built');
-    assert(file2Exists, 'Project 2 should be built');
+    assert.ok(file1Exists, 'Project 1 should be built');
+    assert.ok(file2Exists, 'Project 2 should be built');
   });
 
   test('should handle nested directory structure', async () => {
@@ -195,7 +195,7 @@ describe('Integration: Fixture-based tests', () => {
     const buildDir = join(nestedDir, 'build');
     const fileExists = await stat(join(buildDir, 'nested.json')).then(() => true).catch(() => false);
 
-    assert(fileExists, 'Nested project should be built');
+    assert.ok(fileExists, 'Nested project should be built');
   });
 });
 

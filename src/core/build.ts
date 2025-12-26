@@ -3,7 +3,7 @@ import { relative } from 'node:path';
 import type { ILogger } from '@lsk4/log';
 import { getComment, jsonToFile } from '@lsk4/stringify';
 import { mapSeries } from 'fishbird';
-import { mkdir, unlink } from 'node:fs/promises';
+import { mkdir } from 'node:fs/promises';
 
 import { log as defaultLog } from '../utils/log.js';
 import { createService } from './createService.js';
@@ -19,7 +19,7 @@ export async function build(serviceDirname: string, options: BuildOptions = {}) 
   const buildDir = options.buildDir || `${serviceDirname}/build`;
 
   const service = await createService(serviceDirname, options);
-  await unlink(`${buildDir}`).catch(() => {});
+  const config = (service as any).config;
   await mkdir(buildDir, { recursive: true });
   const files = service.getFiles();
   await mapSeries(files, async (fileOptions: any) => {

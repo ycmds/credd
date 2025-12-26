@@ -36,7 +36,7 @@ describe('createService', () => {
 
     const service = await createService(testDir);
 
-    assert(service instanceof GithubService);
+    assert.ok(service instanceof GithubService);
     assert.strictEqual(service.getProjectPath(), 'owner/repo');
   });
 
@@ -58,7 +58,7 @@ describe('createService', () => {
 
     const service = await createService(testDir);
 
-    assert(service instanceof GitlabService);
+    assert.ok(service instanceof GitlabService);
     assert.strictEqual(service.getProjectPath(), 'group/project');
     assert.strictEqual(service.getProjectId(), '123');
   });
@@ -120,7 +120,7 @@ describe('createService', () => {
 
     const service = await createService(testDir, { force: true });
 
-    assert(service instanceof GithubService);
+    assert.ok(service instanceof GithubService);
     assert.strictEqual(service.force, true);
   });
 });
