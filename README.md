@@ -16,17 +16,17 @@
   <p><strong>❤️‍🔥 CLI tool for managing GitHub & GitLab & Local secrets and credentials ❤️‍🔥</strong></p>
 </div>
 
-<img src="./docs/logo.png" align="right" width="120" height="120" />
+<img src="./docs/logo.png" align="right" width="200" height="200" />
 
-- 🔐 **Secure credential management** for GitHub and GitLab projects
-- 🔄 **Build and upload workflow** for secrets, variables, and files
-- 📁 **File-based credentials** with custom handlers and formats
-- 🔗 **Webhook support** for GitLab projects
-- 🔍 **Recursive mode** for processing multiple projects
-- 🔒 **Encrypted secrets** using GitHub's public key encryption
-- 🎯 **TypeScript-first** with full type definitions
-- ⚙️ **Flexible configuration** with JavaScript config files
-- 🛡️ **Force mode** for overwriting existing credentials
+**🔐 Secure credential management** for GitHub and GitLab projects <br/>
+**🔄 Build and upload workflow** for secrets, variables, and files  <br/>
+**📁 File-based credentials** with custom handlers and formats  <br/>
+**🔗 Webhook support** for GitLab projects  <br/>
+**🔍 Recursive mode** for processing multiple projects  <br/>
+**🔒 Encrypted secrets** using GitHub's public key encryption  <br/>
+**🎯 TypeScript-first** with full type definitions  <br/>
+**⚙️ Flexible configuration** with JavaScript config files  <br/>
+**🛡️ Force mode** for overwriting existing credentials  <br/>
 
 
 ## Installation
