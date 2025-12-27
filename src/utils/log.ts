@@ -1,3 +1,3 @@
 import { createLogger } from '@lsk4/log';
 
-export const log = createLogger('creds');
+export const log = createLogger('credd');

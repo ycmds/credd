@@ -59,13 +59,13 @@ If you want to change something, please contact admin repo: ${service.getProject
       comment,
     });
     const relativePath = relative(process.cwd(), filepath);
-    log.info(`[${status}] ${service.getProjectPath()} (${name})[${credType}] => ${relativePath}`);
     return {
       filepath,
       status,
       name,
       credType,
       projectPath: service.getProjectPath(),
+      relativePath,
     }
   });
   return {

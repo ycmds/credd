@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 import { resolve } from 'node:path';
+import type { Argv } from 'yargs';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import type { Argv } from 'yargs';
 
 import { build } from '../core/build.js';
 import { buildDeep } from '../core/buildDeep.js';
@@ -69,18 +69,38 @@ async function main() {
     }
     if (isUpload) {
       const res = await uploadDeep(dirname, { force, log });
-      log.debug('UploadDeep result:', res); 
+      log.debug('UploadDeep result:', res);
     }
   } else {
-
     if (isBuild) {
       const res = await build(dirname, { force, log });
-      log.debug('Build result:', res);
+      log.info('[build]', res.serviceDirname, '[=>]', res.buildDir);
+      const maxNameLength = Math.max(...(res.files || []).map(({ name }) => name.length), 9);
+      const maxStatusLength = Math.max(...(res.files || []).map(({ status }) => status.length), 6);
+      const maxCredTypeLength = Math.max(
+        ...(res.files || []).map(({ credType }) => credType.length),
+        9,
+      );
+      (res.files || []).forEach(({ filepath, status, name, credType, projectPath }) => {
+        log.info(
+          [
+            `[${projectPath}]`,
+            `(${name})`.padEnd(maxNameLength + 2, ' '),
+            `[${status}]`.padEnd(maxStatusLength + 2, ' '),
+            `[${credType}]`.padEnd(maxCredTypeLength + 2, ' '),
+            `[=>] ${filepath}`,
+          ].join(' '),
+        );
+      });
+      if (res.files.length === 0) {
+        log.info('No files to build');
+      }
+      // log.debug('Build result:', res);
     }
     if (isUpload) {
       const res = await upload(dirname, { force, log });
       log.debug('Upload result:', res);
-    } 
+    }
   }
 }
 
