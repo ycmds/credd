@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/ycmds/credd/compare/v1.1.0...v1.1.1) (2025-12-27)
+
+
+### Bug Fixes
+
+* correct logger name and enhance build logging output ([b1249e3](https://github.com/ycmds/credd/commit/b1249e36deed10188649d60b653d3921ec7b4a1f))
+
 # [1.1.0](https://github.com/ycmds/credd/compare/v1.0.3...v1.1.0) (2025-12-27)
 
 
