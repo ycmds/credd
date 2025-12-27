@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/ycmds/credd/compare/v1.0.3...v1.1.0) (2025-12-27)
+
+
+### Features
+
+* remove obsolete tests and add new test cases for loadConfig ([ce96f51](https://github.com/ycmds/credd/commit/ce96f51539fbb6c2fab9af84e52ea51499fa9c9c))
+
 ## [1.0.3](https://github.com/ycmds/credd/compare/v1.0.2...v1.0.3) (2025-12-26)
 
 
