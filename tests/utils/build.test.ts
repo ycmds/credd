@@ -14,7 +14,7 @@ describe('build', () => {
     await mkdir(testDir, { recursive: true });
   });
   afterEach(async () => {
-    // await rm(testDir, { recursive: true, force: true });
+    await rm(testDir, { recursive: true, force: true });
   });
 
   test('should build files from config', async () => {
@@ -62,24 +62,55 @@ describe('build', () => {
     const res = await build(testDir, { buildDir });
     console.log('build result', res);
 
-    // // Check that build directory was created
-    // const buildDirExists = await stat(buildDir)
-    //   .then(() => true)
-    //   .catch(() => false);
-    // assert.ok(buildDirExists, 'Build directory should exist');
+    // Check that build directory was created
+    const buildDirExists = await stat(buildDir)
+      .then(() => true)
+      .catch(() => false);
+    assert.ok(buildDirExists, 'Build directory should exist');
 
-    // // Check that file was created
-    // const filePath = join(buildDir, 'test-secret.json');
-    // const fileExists = await stat(filePath)
-    //   .then(() => true)
-    //   .catch(() => false);
-    // assert.ok(fileExists, 'Build file should exist');
+    // Check JSON file
+    const jsonPath = join(buildDir, 'test.json');
+    const jsonExists = await stat(jsonPath)
+      .then(() => true)
+      .catch(() => false);
+    assert.ok(jsonExists, 'JSON file should exist');
+    const jsonContent = await readFile(jsonPath, 'utf-8');
+    const jsonParsed = JSON.parse(jsonContent);
+    assert.strictEqual(jsonParsed.key, 'value');
+    assert.strictEqual(jsonParsed.number, 42);
+    assert.ok(jsonParsed.cnf, 'JSON should include config');
 
-    // // Check file content
-    // const content = await readFile(filePath, 'utf-8');
-    // const parsed = JSON.parse(content);
-    // assert.strictEqual(parsed.key, 'value');
-    // assert.strictEqual(parsed.number, 42);
+    // Check CJS file
+    const cjsPath = join(buildDir, 'test.js');
+    const cjsExists = await stat(cjsPath)
+      .then(() => true)
+      .catch(() => false);
+    assert.ok(cjsExists, 'CJS file should exist');
+    const cjsContent = await readFile(cjsPath, 'utf-8');
+    assert.ok(cjsContent.includes('module.exports'), 'CJS should use module.exports');
+    assert.ok(cjsContent.includes('key:'), 'CJS should contain key');
+    assert.ok(cjsContent.includes(': 42'), 'CJS should contain number');
+
+    // Check ESM file
+    const esmPath = join(buildDir, 'test.ts');
+    const esmExists = await stat(esmPath)
+      .then(() => true)
+      .catch(() => false);
+    assert.ok(esmExists, 'ESM file should exist');
+    const esmContent = await readFile(esmPath, 'utf-8');
+    assert.ok(esmContent.includes('export default'), 'ESM should use export default');
+    assert.ok(esmContent.includes('key:'), 'ESM should contain key');
+    assert.ok(esmContent.includes(': 42'), 'ESM should contain number');
+
+    // Check ENV file
+    const envPath = join(buildDir, 'test.env');
+    const envExists = await stat(envPath)
+      .then(() => true)
+      .catch(() => false);
+    assert.ok(envExists, 'ENV file should exist');
+    const envContent = await readFile(envPath, 'utf-8');
+    assert.ok(envContent.includes('key=value'), 'ENV should contain key=value');
+    assert.ok(envContent.includes('number=42'), 'ENV should contain number=42');
   });
 
   // test('should handle multiple files', async () => {
