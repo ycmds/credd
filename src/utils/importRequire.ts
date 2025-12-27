@@ -42,8 +42,8 @@ export async function importRequire(path: string, { removeCache }: { removeCache
   } catch (importErr) {
     const errorCode = Err.getCode(importErr);
     if (errorCode === 'ERR_MODULE_NOT_FOUND') {
-      throw new Err(`${path} not found`, importErr);
+      throw new Err('MODULE_NOT_FOUND', `${path} not found`, { path });
     }
-    throw new Err('importErr', importErr);
+    throw new Err('importErr', importErr, { path });
   }
 }

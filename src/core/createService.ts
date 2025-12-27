@@ -24,6 +24,7 @@ export async function createService(
   const serviceOptions = {
     ...config.service,
     ...options,
+    path,
     config,
   };
   if (serviceName === 'github') {

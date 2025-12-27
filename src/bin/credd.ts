@@ -11,8 +11,16 @@ import { upload } from '../core/upload.js';
 import { uploadDeep } from '../core/uploadDeep.js';
 import { log } from '../utils/log.js';
 
+interface CreddArgs {
+  dir: string;
+  build: boolean;
+  upload: boolean;
+  recursive: boolean;
+  force: boolean;
+}
+
 async function main() {
-  const argv = await yargs(hideBin(process.argv))
+  const argv = (await yargs(hideBin(process.argv))
     .command('$0 <dir>', 'build and/or upload creds', (yargsBuilder: Argv) =>
       yargsBuilder
         .positional('dir', {
@@ -48,18 +56,31 @@ async function main() {
         }),
     )
     .help()
-    .parse();
+    .parse()) as unknown as CreddArgs;
 
   const rawDir = (argv.dir as string) || '.';
   const dirname = resolve(process.cwd(), rawDir);
   const { build: isBuild, upload: isUpload, recursive: isDeep, force } = argv;
 
   if (isDeep) {
-    if (isBuild) await buildDeep(dirname, { force, log });
-    if (isUpload) await uploadDeep(dirname, { force, log });
+    if (isBuild) {
+      const res = await buildDeep(dirname, { force, log });
+      log.debug('BuildDeep result:', res);
+    }
+    if (isUpload) {
+      const res = await uploadDeep(dirname, { force, log });
+      log.debug('UploadDeep result:', res); 
+    }
   } else {
-    if (isBuild) await build(dirname, { force, log });
-    if (isUpload) await upload(dirname, { force, log });
+
+    if (isBuild) {
+      const res = await build(dirname, { force, log });
+      log.debug('Build result:', res);
+    }
+    if (isUpload) {
+      const res = await upload(dirname, { force, log });
+      log.debug('Upload result:', res);
+    } 
   }
 }
 

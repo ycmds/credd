@@ -1,3 +1,5 @@
+import type { FileFormat } from '@lsk4/stringify';
+
 export type CredsService = {
   projectId?: string;
   projectName?: string;
@@ -36,3 +38,12 @@ export type CredsConfig = {
 // TODO: позднее типы специализируются
 export type GitlabCredsConfig = CredsConfig;
 export type GithubCredsConfig = CredsConfig;
+
+export type FileOptions = {
+  name: string;
+  filename: string;
+  credType: 'secret' | 'variable' | 'file';
+  type: FileFormat;
+  format?: FileFormat;
+  handler: (fileOptions: any, serviceConfig?: any) => Promise<any> | any;
+};

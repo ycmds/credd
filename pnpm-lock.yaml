@@ -39,6 +39,9 @@ importers:
       '@biomejs/biome':
         specifier: ^2.3.10
         version: 2.3.10
+      '@lskjs/biome-config':
+        specifier: ^1.0.0
+        version: 1.0.0
       '@semantic-release/changelog':
         specifier: ^6.0.3
         version: 6.0.3(semantic-release@25.0.2(typescript@5.9.3))
@@ -550,6 +553,9 @@ packages:
 
   '@lsk4/stringify@4.28.0':
     resolution: {integrity: sha512-uqu9IitgdEi6i0MzW1XwXhQp2xrqCyRJThOCoFC6n88/BbwboL+tMuNyG5c57YdL7pjYrjAthr48CCjFaGOpaQ==}
+
+  '@lskjs/biome-config@1.0.0':
+    resolution: {integrity: sha512-ICQbpUa9CXomBVX6OHzgmsD7mrouhF4Y4jrDWQzWbuGQ9yt4sXRdXEi1Uhj4dVNufHgBNj+TN32Isc2NYbOacg==}
 
   '@napi-rs/wasm-runtime@1.1.0':
     resolution: {integrity: sha512-Fq6DJW+Bb5jaWE69/qOE0D1TUN9+6uWhCeZpdnSBk14pjLcCWR7Q8n49PTSPHazM37JqrsdpEthXy2xn6jWWiA==}
@@ -3238,6 +3244,8 @@ snapshots:
       javascript-stringify: 2.1.0
       js-yaml: 4.1.0
       strip-json-comments: 3.1.1
+
+  '@lskjs/biome-config@1.0.0': {}
 
   '@napi-rs/wasm-runtime@1.1.0':
     dependencies:

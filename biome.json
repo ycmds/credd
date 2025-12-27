@@ -5,9 +5,11 @@
     "rules": {
       "recommended": true,
       "suspicious": {
-        "noExplicitAny": "off"
+        "noExplicitAny": "off",
+        "noTsIgnore": "warn"
       },
       "correctness": {
+        "noUnusedImports": "warn",
         "useImportExtensions": {
           "level": "error",
           "options": {
@@ -30,6 +32,9 @@
     }
   },
   "files": {
-    "includes": ["src/**/*.ts", "tests/**/*.ts"]
+    "includes": [
+      "src/**/*.ts",
+      "tests/**/*.ts"
+    ]
   }
 }

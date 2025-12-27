@@ -7,6 +7,8 @@ import { map } from 'fishbird';
 import type { CredsConfig, CredsService, CredsVariable } from '../types.js';
 
 export class Service {
+  config: CredsConfig | undefined;
+  path: string | undefined;
   client!: AxiosInstance;
   log = createLogger(this.constructor.name);
 

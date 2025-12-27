@@ -1,7 +1,5 @@
 # 🔐 Credd
 
-> CLI tool for managing GitHub & GitLab & Local secrets and credentials
-
 [![LSK.js](https://github.com/lskjs/presets/raw/main/docs/badge.svg)](https://github.com/lskjs)
 [![NPM version](https://badgen.net/npm/v/credd)](https://www.npmjs.com/package/credd)
 [![NPM downloads](https://badgen.net/npm/dt/credd)](https://www.npmjs.com/package/credd)
@@ -13,7 +11,7 @@
 [![Ask us in Telegram](https://img.shields.io/badge/Ask%20us%20in-Telegram-brightblue.svg)](https://t.me/lskjschat)
 
 <div align="center">
-  <p><strong>❤️‍🔥 CLI tool for managing GitHub & GitLab & Local secrets and credentials ❤️‍🔥</strong></p>
+  <h3><p><strong>❤️‍🔥 CLI tool for managing GitHub & GitLab & Local secrets and credentials ❤️‍🔥</strong></p></h3>
 </div>
 
 <img src="./docs/logo.png" align="right" width="200" height="200" />

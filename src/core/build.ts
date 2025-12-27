@@ -3,28 +3,33 @@ import { relative } from 'node:path';
 import type { ILogger } from '@lsk4/log';
 import { getComment, jsonToFile } from '@lsk4/stringify';
 import { mapSeries } from 'fishbird';
-import { mkdir } from 'node:fs/promises';
+import { mkdir, unlink } from 'node:fs/promises';
 
 import { log as defaultLog } from '../utils/log.js';
 import { createService } from './createService.js';
 
-type BuildOptions = {
+export type BuildOptions = {
   buildDir?: string;
   log?: ILogger;
   force?: boolean;
 };
+
+
+// getting from @lsk4/stringify
+// export type FileFormat = 'json' | 'cjs' | 'esm' | 'yml' | 'env';
+
 
 export async function build(serviceDirname: string, options: BuildOptions = {}) {
   const log = options.log || defaultLog;
   const buildDir = options.buildDir || `${serviceDirname}/build`;
 
   const service = await createService(serviceDirname, options);
-  const config = (service as any).config;
+  await unlink(buildDir).catch(() => {});
   await mkdir(buildDir, { recursive: true });
   const files = service.getFiles();
-  await mapSeries(files, async (fileOptions: any) => {
+  const filesRes = await mapSeries(files, async (fileOptions: any) => {
     const { filename, handler } = fileOptions;
-    const res = await handler(fileOptions, config);
+    const res = await handler(fileOptions, (service as any)?.config);
     // console.log('fileOptions', fileOptions);
     const { credType, name } = fileOptions;
     const comment = getComment({
@@ -55,5 +60,17 @@ If you want to change something, please contact admin repo: ${service.getProject
     });
     const relativePath = relative(process.cwd(), filepath);
     log.info(`[${status}] ${service.getProjectPath()} (${name})[${credType}] => ${relativePath}`);
+    return {
+      filepath,
+      status,
+      name,
+      credType,
+      projectPath: service.getProjectPath(),
+    }
   });
+  return {
+    serviceDirname, 
+    buildDir,
+    files: filesRes,
+  }
 }
