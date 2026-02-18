@@ -24,8 +24,8 @@ export async function uploadDeep(dirname: string, options: UploadDeepOptions = {
     })
   ).filter(Boolean);
   return mapSeries(files, async ({ filename }) => {
-    await upload(filename, options).catch((err) => {
-      log.error(`Build error ${filename}: `, Err.getMessage(err));
+    return upload(filename, options).catch((err) => {
+      log.error(`Upload error ${filename}: `, Err.getMessage(err));
       log.error(err);
     });
   });

@@ -39,10 +39,10 @@ export async function importRequire(path: string, { removeCache }: { removeCache
     // For ES modules, return the module object
     // If it has a default export, we'll handle it in loadConfig
     return res;
-  } catch (importErr) {
+  } catch (importErr: any) {
     const errorCode = Err.getCode(importErr);
     if (errorCode === 'ERR_MODULE_NOT_FOUND') {
-      throw new Err('MODULE_NOT_FOUND', `${path} not found`, { path });
+      throw new Err('MODULE_NOT_FOUND', importErr.message || `${path} not found`, { path });
     }
     throw new Err('importErr', importErr, { path });
   }

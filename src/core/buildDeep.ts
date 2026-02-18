@@ -24,7 +24,7 @@ export async function buildDeep(dirname: string, options: BuildDeepOptions = {})
     })
   ).filter(Boolean);
   return mapSeries(files, async ({ filename }) => {
-    await build(filename, options).catch((err) => {
+    return build(filename, options).catch((err) => {
       log.error(`Build error ${filename}: `, Err.getMessage(err));
       log.error(err);
     });

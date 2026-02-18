@@ -18,7 +18,8 @@ describe('build', () => {
   });
 
   test('should build files from config', async () => {
-    const configContent = `module.exports = {
+    const configContent = `
+    module.exports = {
       service: {
         serviceName: 'github',
         token: 'test-token',

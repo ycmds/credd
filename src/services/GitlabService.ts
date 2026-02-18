@@ -114,6 +114,16 @@ export class GitlabService extends Service {
         ...options,
         // masked: true,
       },
+    }).catch((err: any) => {
+      const baseURL = err?.config?.baseURL || '';
+      const url = err?.config?.url || '';
+      const status = err?.response?.status;
+      const responseData = err?.response?.data;
+      const detail = typeof responseData === 'string' ? responseData : JSON.stringify(responseData);
+      throw new Err(`POST ${baseURL}${url} ${status} ${detail || ''}`.trim(), {
+        name,
+        projectId: this.projectId,
+      });
     });
   }
   async uploadSecret(name: string, variable: CredsVariable, options: CredsVariableOptions = {}) {
@@ -143,7 +153,7 @@ export class GitlabService extends Service {
       url: `/hooks`,
     }).catch((err) => {
       if (!force) throw err;
-      return { data: { value: '@lskjs/creds' } };
+      return { data: [] };
     });
     await map(hooksList, async ({ id: hookId }: any) => {
       await this.client({

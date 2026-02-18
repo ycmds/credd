@@ -8,7 +8,7 @@
 [![Have tree shaking](https://badgen.net/bundlephobia/tree-shaking/credd)](https://bundlephobia.com/result?p=credd)
 [![NPM Package size](https://badgen.net/bundlephobia/minzip/credd)](https://bundlephobia.com/result?p=credd)
 [![License](https://badgen.net/github/license/ycmds/credd)](https://github.com/ycmds/credd/blob/main/LICENSE)
-[![Ask us in Telegram](https://img.shields.io/badge/Ask%20us%20in-Telegram-brightblue.svg)](https://t.me/lskjschat)
+[![Ask me in Telegram](https://img.shields.io/badge/Ask%20me%20in-Telegram-0088CC.svg)](https://t.me/isuvorov)
 
 <div align="center">
   <h3><p><strong>❤️‍🔥 CLI tool for managing GitHub & GitLab & Local secrets and credentials ❤️‍🔥</strong></p></h3>
