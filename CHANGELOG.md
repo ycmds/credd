@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/ycmds/credd/compare/v1.1.1...v1.1.2) (2026-02-18)
+
+
+### Bug Fixes
+
+* recursive build & improve error logging ([2f636b0](https://github.com/ycmds/credd/commit/2f636b0052c27a88c278cfcc46e50f566c14fc21))
+
 ## [1.1.1](https://github.com/ycmds/credd/compare/v1.1.0...v1.1.1) (2025-12-27)
 
 
