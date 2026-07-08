@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/ycmds/credd/compare/v1.1.2...v1.2.0) (2026-07-08)
+
+
+### Features
+
+* improve compare algo for not changing unnecessary files ([eb002b5](https://github.com/ycmds/credd/commit/eb002b536f08658c3587ec687771391076f29bd4))
+
 ## [1.1.2](https://github.com/ycmds/credd/compare/v1.1.1...v1.1.2) (2026-02-18)
 
 
