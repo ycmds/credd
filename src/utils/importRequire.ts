@@ -17,7 +17,7 @@ export async function importRequire(path: string, { removeCache }: { removeCache
     const resolvedPath = resolve(path);
     const res = require(resolvedPath);
     if (removeCache && require.cache) {
-      delete require.cache[resolvedPath];
+      delete require.cache[require.resolve(resolvedPath)];
     }
     return res;
   } catch (requireErr: any) {

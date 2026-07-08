@@ -7,21 +7,26 @@ import { hideBin } from 'yargs/helpers';
 
 import { build } from '../core/build.js';
 import { buildDeep } from '../core/buildDeep.js';
+import { printBuildResult } from '../core/printBuildResult.js';
+import { printInfo } from '../core/printInfo.js';
 import { upload } from '../core/upload.js';
 import { uploadDeep } from '../core/uploadDeep.js';
 import { log } from '../utils/log.js';
 
 interface CreddArgs {
+  _: string[];
   dir: string;
   build: boolean;
   upload: boolean;
   recursive: boolean;
   force: boolean;
+  why: boolean;
 }
 
 async function main() {
   const argv = (await yargs(hideBin(process.argv))
-    .command('$0 <dir>', 'build and/or upload creds', (yargsBuilder: Argv) =>
+    .command('info', 'get info about credd and current environment', () => {})
+    .command('$0 [dir]', 'build and/or upload creds', (yargsBuilder: Argv) =>
       yargsBuilder
         .positional('dir', {
           describe: 'Directory with config.js',
@@ -53,19 +58,35 @@ async function main() {
             type: 'boolean',
             default: false,
           },
+          why: {
+            describe: 'add a redacted "Why updated" line to rewritten files (key + type, no values)',
+            type: 'boolean',
+            default: false,
+          },
         }),
     )
     .help()
     .parse()) as unknown as CreddArgs;
 
+  const command = argv._?.[0];
+  if (command === 'info') {
+    await printInfo();
+    return;
+  }
+  if (command) {
+    log.error(`Unknown command: "${command}". Run "credd --help" for available commands.`);
+    process.exit(1);
+  }
+
   const rawDir = (argv.dir as string) || '.';
   const dirname = resolve(process.cwd(), rawDir);
-  const { build: isBuild, upload: isUpload, recursive: isDeep, force } = argv;
+  const { build: isBuild, upload: isUpload, recursive: isDeep, force, why } = argv;
 
   if (isDeep) {
     if (isBuild) {
-      const res = await buildDeep(dirname, { force, log });
-      log.debug('BuildDeep result:', res);
+      const res = await buildDeep(dirname, { force, why, log });
+      log.debug('BuildDeep result:', res.length);
+      res.forEach(printBuildResult);
     }
     if (isUpload) {
       const res = await uploadDeep(dirname, { force, log });
@@ -73,29 +94,8 @@ async function main() {
     }
   } else {
     if (isBuild) {
-      const res = await build(dirname, { force, log });
-      log.info('[build]', res.serviceDirname, '[=>]', res.buildDir);
-      const maxNameLength = Math.max(...(res.files || []).map(({ name }) => name.length), 9);
-      const maxStatusLength = Math.max(...(res.files || []).map(({ status }) => status.length), 6);
-      const maxCredTypeLength = Math.max(
-        ...(res.files || []).map(({ credType }) => credType.length),
-        9,
-      );
-      (res.files || []).forEach(({ filepath, status, name, credType, projectPath }) => {
-        log.info(
-          [
-            `[${projectPath}]`,
-            `(${name})`.padEnd(maxNameLength + 2, ' '),
-            `[${status}]`.padEnd(maxStatusLength + 2, ' '),
-            `[${credType}]`.padEnd(maxCredTypeLength + 2, ' '),
-            `[=>] ${filepath}`,
-          ].join(' '),
-        );
-      });
-      if (res.files.length === 0) {
-        log.info('No files to build');
-      }
-      // log.debug('Build result:', res);
+      const res = await build(dirname, { force, why, log });
+      printBuildResult(res);
     }
     if (isUpload) {
       const res = await upload(dirname, { force, log });
@@ -105,6 +105,11 @@ async function main() {
 }
 
 main().catch((err) => {
-  log.error('Error:', err);
+  if (err?.code === 'CONFIG_NOT_FOUND') {
+    log.error(`config.js not found at: ${err.message?.split(' at ')?.[1] || 'unknown path'}`);
+    log.error('Make sure you are running credd from a directory with config.js or pass the correct path: credd <dir>');
+  } else {
+    log.error(err?.message || err);
+  }
   process.exit(1);
 });

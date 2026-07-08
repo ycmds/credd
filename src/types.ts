@@ -1,4 +1,4 @@
-import type { FileFormat } from '@lsk4/stringify';
+import type { FileFormat } from './lsk4-stringify/index.js';
 
 export type CredsService = {
   projectId?: string;

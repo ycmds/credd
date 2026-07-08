@@ -1,17 +1,17 @@
 import { relative } from 'node:path';
 
 import type { ILogger } from '@lsk4/log';
-import { getComment, jsonToFile } from '@lsk4/stringify';
+import { getComment, jsonToFile } from '../lsk4-stringify/index.js';
 import { mapSeries } from 'fishbird';
 import { mkdir, unlink } from 'node:fs/promises';
 
-import { log as defaultLog } from '../utils/log.js';
 import { createService } from './createService.js';
 
 export type BuildOptions = {
   buildDir?: string;
   log?: ILogger;
   force?: boolean;
+  why?: boolean;
 };
 
 
@@ -20,7 +20,6 @@ export type BuildOptions = {
 
 
 export async function build(serviceDirname: string, options: BuildOptions = {}) {
-  const log = options.log || defaultLog;
   const buildDir = options.buildDir || `${serviceDirname}/build`;
 
   const service = await createService(serviceDirname, options);
@@ -57,6 +56,7 @@ If you want to change something, please contact admin repo: ${service.getProject
       format,
       compare: !options.force,
       comment,
+      why: options.why,
     });
     const relativePath = relative(process.cwd(), filepath);
     return {

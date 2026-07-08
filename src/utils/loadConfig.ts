@@ -9,6 +9,6 @@ export async function loadConfig(dirname: string) {
   if (!existsSync(path)) {
     throw new Err('CONFIG_NOT_FOUND', `config.js not found at ${path}`);
   }
-  const res = await importRequire(path);
+  const res = await importRequire(path, { removeCache: true });
   return { path, config: res.default || res };
 }

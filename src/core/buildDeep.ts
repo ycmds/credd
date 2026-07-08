@@ -12,6 +12,7 @@ type BuildDeepOptions = {
   buildDir?: string;
   log?: ILogger;
   force?: boolean;
+  why?: boolean;
 };
 
 export async function buildDeep(dirname: string, options: BuildDeepOptions = {}) {

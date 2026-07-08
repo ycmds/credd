@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@lsk4/algos':
+        specifier: ^4.24.0
+        version: 4.24.0
       '@lsk4/err':
         specifier: ^4.26.0
         version: 4.26.0
@@ -29,9 +32,18 @@ importers:
       fishbird:
         specifier: ^1.1.8
         version: 1.1.8
+      javascript-stringify:
+        specifier: ^2.1.0
+        version: 2.1.0
+      js-yaml:
+        specifier: ^4.1.1
+        version: 4.1.1
       libsodium-wrappers:
         specifier: ^0.7.15
         version: 0.7.15
+      strip-json-comments:
+        specifier: ^3.1.1
+        version: 3.1.1
       yargs:
         specifier: ^17.7.2
         version: 17.7.2
@@ -51,6 +63,9 @@ importers:
       '@size-limit/preset-small-lib':
         specifier: ^11.2.0
         version: 11.2.0(size-limit@11.2.0)
+      '@types/js-yaml':
+        specifier: ^4.0.9
+        version: 4.0.9
       '@types/node':
         specifier: ^25.0.3
         version: 25.0.3
@@ -1176,6 +1191,9 @@ packages:
   '@types/estree@1.0.8':
     resolution: {integrity: sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w==}
 
+  '@types/js-yaml@4.0.9':
+    resolution: {integrity: sha512-k4MGaQl5TGo/iipqb2UDG2UwjXziSWkh0uysQelTlJpX1qGlpUZYm8PnO4DxG1qBomtJUdYJ6qR6xdIah10JLg==}
+
   '@types/node@25.0.3':
     resolution: {integrity: sha512-W609buLVRVmeW693xKfzHeIV6nJGGz98uCPfeXI1ELMLXVeKYZ9m15fAMSaUPBHYLGFsVRcMmSCksQOrZV9BYA==}
 
@@ -1869,10 +1887,6 @@ packages:
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
-
-  js-yaml@4.1.0:
-    resolution: {integrity: sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==}
-    hasBin: true
 
   js-yaml@4.1.1:
     resolution: {integrity: sha512-qQKT4zQxXl8lLwBtHMWwaTcGfFOZviOJet3Oy/xmGk2gZH677CJM9EvtfdSkgWcATZhj/55JZ0rmy3myCT5lsA==}
@@ -3242,7 +3256,7 @@ snapshots:
       '@lsk4/err': 4.26.0
       '@lsk4/log': 4.28.0
       javascript-stringify: 2.1.0
-      js-yaml: 4.1.0
+      js-yaml: 4.1.1
       strip-json-comments: 3.1.1
 
   '@lskjs/biome-config@1.0.0': {}
@@ -3725,6 +3739,8 @@ snapshots:
     optional: true
 
   '@types/estree@1.0.8': {}
+
+  '@types/js-yaml@4.0.9': {}
 
   '@types/node@25.0.3':
     dependencies:
@@ -4454,10 +4470,6 @@ snapshots:
   joycon@3.1.1: {}
 
   js-tokens@4.0.0: {}
-
-  js-yaml@4.1.0:
-    dependencies:
-      argparse: 2.0.1
 
   js-yaml@4.1.1:
     dependencies:

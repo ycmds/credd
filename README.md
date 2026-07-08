@@ -3,10 +3,8 @@
 [![LSK.js](https://github.com/lskjs/presets/raw/main/docs/badge.svg)](https://github.com/lskjs)
 [![NPM version](https://badgen.net/npm/v/credd)](https://www.npmjs.com/package/credd)
 [![NPM downloads](https://badgen.net/npm/dt/credd)](https://www.npmjs.com/package/credd)
-[![NPM Dependency count](https://badgen.net/bundlephobia/dependency-count/credd)](https://bundlephobia.com/result?p=credd)
 [![Have TypeScript types](https://badgen.net/npm/types/credd)](https://www.npmjs.com/package/credd)
-[![Have tree shaking](https://badgen.net/bundlephobia/tree-shaking/credd)](https://bundlephobia.com/result?p=credd)
-[![NPM Package size](https://badgen.net/bundlephobia/minzip/credd)](https://bundlephobia.com/result?p=credd)
+[![min+gzip](https://img.shields.io/badge/min%2Bgzip-3.4_kB-blue)](https://www.npmjs.com/package/credd)
 [![License](https://badgen.net/github/license/ycmds/credd)](https://github.com/ycmds/credd/blob/main/LICENSE)
 [![Ask me in Telegram](https://img.shields.io/badge/Ask%20me%20in-Telegram-0088CC.svg)](https://t.me/isuvorov)
 
