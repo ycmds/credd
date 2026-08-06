@@ -29,6 +29,9 @@
   },
   "dependencies": {
     "@lsk4/algos": "^4.24.0",
+    "@noble/ciphers": "2.2.0",
+    "@noble/curves": "2.3.0",
+    "@noble/hashes": "2.3.0",
     "@lsk4/err": "^4.26.0",
     "@lsk4/log": "^4.28.0",
     "@lsk4/stringify": "^4.28.0",
@@ -38,7 +41,6 @@
     "fishbird": "^1.1.8",
     "javascript-stringify": "^2.1.0",
     "js-yaml": "^4.1.1",
-    "libsodium-wrappers": "^0.7.15",
     "strip-json-comments": "^3.1.1",
     "yargs": "^17.7.2"
   },

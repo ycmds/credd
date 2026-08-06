@@ -1,9 +1,9 @@
 import { Err } from '@lsk4/err';
 import { createLogger } from '@lsk4/log';
 import axios from 'axios';
-import _sodium from 'libsodium-wrappers';
 
 import type { CredsVariable } from '../types.js';
+import { sealedBox } from '../utils/sealedBox.js';
 import { Service } from './Service.js';
 
 interface GithubServiceOptions {
@@ -83,12 +83,9 @@ export class GithubService extends Service {
     if (!publicKeyData?.key) throw new Err('!publicKey');
     if (!publicKeyData?.key_id) throw new Err('!publicKeyId');
 
-    await _sodium.ready;
-    const sodium = _sodium;
-    const binkey = sodium.from_base64(publicKeyData.key, sodium.base64_variants.ORIGINAL);
-    const binsec = sodium.from_string(content);
-    const encBytes = sodium.crypto_box_seal(binsec, binkey);
-    const output = sodium.to_base64(encBytes, sodium.base64_variants.ORIGINAL);
+    const publicKey = new Uint8Array(Buffer.from(publicKeyData.key, 'base64'));
+    const encBytes = sealedBox(new TextEncoder().encode(content), publicKey);
+    const output = Buffer.from(encBytes).toString('base64');
 
     await this.client({
       method: 'put',

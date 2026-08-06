@@ -633,19 +633,6 @@ const config: CredsConfig = {
 };
 ```
 
-## Dependencies
-
-The package requires:
-
-- `@ycmd/run` - Command execution utilities
-- `@ycmd/utils` - Utility functions
-- `@lsk4/log` - Logging utilities
-- `@lsk4/err` - Error handling
-- `@lsk4/stringify` - String formatting
-- `axios` - HTTP client for API requests
-- `libsodium-wrappers` - Encryption for GitHub secrets
-- `fishbird` - Async utilities
-- `yargs` - CLI argument parsing
 
 ## Contributing
 
